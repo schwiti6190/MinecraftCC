@@ -109,3 +109,22 @@ function TurtleStripMiningStrategy:changeTurnState(newState)
     self:debug("Last turn state = %s, new turn state = %s", self.state.name, newState.name)
     self.turnState = newState
 end
+
+local function setup()
+	local laneLength, laneGap, numLanes
+	while true do
+		print("Number of lanes: ")
+		local numLanes = tonumber(read())
+		print("Lane length: ")	
+		local laneLength = tonumber(read())
+		print("Lane gap: ")
+		local laneGap = tonumber(read())
+		if laneLength ~= nil or laneGap ~= nil or numLanes ~= nil then 
+			break
+		end
+		print("You failed!")
+	end
+	TurtleStripMiningStrategy(laneLength, laneGap, numLanes)
+end
+
+setup()
