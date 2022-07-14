@@ -104,13 +104,13 @@ end
 function TurtleTaskModule:placeLeft(item, isDiggingAllowed)
 	turtle.turnLeft()
 	self:placeForward(item, isDiggingAllowed)
-	turtle.turnLeft()
+	turtle.turnRight()
 end
 
 function TurtleTaskModule:placeRight(item, isDiggingAllowed)
 	turtle.turnRight()
 	self:placeForward(item, isDiggingAllowed)
-	turtle.turnRight()
+	turtle.turnLeft()
 end
 
 function TurtleTaskModule:placeDown(item, isDiggingAllowed)
