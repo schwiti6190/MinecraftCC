@@ -95,11 +95,11 @@ function TurtleStripMiningStrategy:createRightTurn()
 end
 
 function TurtleStripMiningStrategy:placeTorchBehind()
-	self.turtleTask.placeBackward(ItemNames.torch)
+	self.turtleTask:placeBackward(ItemNames.torch)
 end
 
 function TurtleStripMiningStrategy:placeChestBelow()
-	self.turtleTask.placeDown(ItemNames.chest)
+	self.turtleTask:placeDown(ItemNames.chest)
 	self.turtleTask:dropDown(self.DROP_ITEMS_IGNORED)
 	self.turtleTask:dropDown(nil, {[ItemNames.cobble] = true}, 64)
 end
