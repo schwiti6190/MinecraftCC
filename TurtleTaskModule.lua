@@ -88,36 +88,42 @@ function TurtleTaskModule:place(item, placeFunc)
 	end
 end
 
-function TurtleTaskModule:placeForward(item)
-	turtle.dig()
+function TurtleTaskModule:placeForward(item, isDiggingAllowed)
+	if isDiggingAllowed then
+		turtle.dig()
+	end
 	self:place(item, turtle.place)
 end
 
-function TurtleTaskModule:placeBackward(item)
+function TurtleTaskModule:placeBackward(item, isDiggingAllowed)
 	self:rotate180()
-	self:placeForward(item)
+	self:placeForward(item, isDiggingAllowed)
 	self:rotate180()
 end
 
-function TurtleTaskModule:placeLeft(item)
+function TurtleTaskModule:placeLeft(item, isDiggingAllowed)
 	turtle.turnLeft()
-	self:placeForward(item)
+	self:placeForward(item, isDiggingAllowed)
 	turtle.turnLeft()
 end
 
-function TurtleTaskModule:placeRight(item)
+function TurtleTaskModule:placeRight(item, isDiggingAllowed)
 	turtle.turnRight()
-	self:placeForward(item)
+	self:placeForward(item, isDiggingAllowed)
 	turtle.turnRight()
 end
 
-function TurtleTaskModule:placeDown(item)
-	turtle.digDown()
+function TurtleTaskModule:placeDown(item, isDiggingAllowed)
+	if isDiggingAllowed then
+		turtle.digDown()
+	end
 	self:place(item, turtle.placeDown)
 end
 
-function TurtleTaskModule:placeUp(item)
-	turtle.digUp()
+function TurtleTaskModule:placeUp(item, isDiggingAllowed)
+	if isDiggingAllowed then
+		turtle.digUp()
+	end
 	self:place(item, turtle.placeUp)
 end
 
