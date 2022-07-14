@@ -18,7 +18,7 @@ TurtleStripMiningStrategy.DROP_ITEMS_IGNORED = {
 	[ItemNames.torch] = true,
 	[ItemNames.cobble] = true,
 }
-function TurtleStripMiningStrategy:init(laneLength, laneGap)
+function TurtleStripMiningStrategy:init(laneLength, laneGap, numLanes)
 	TurtleStrategy.init(self)
 	self:initStates(TurtleStripMiningStrategy.myStates)
 	self.state = self.states.LANE
@@ -27,6 +27,10 @@ function TurtleStripMiningStrategy:init(laneLength, laneGap)
 	self.laneGap = laneGap
 	self.turtleTask = TurtleTaskModule()
 	self.torchCounter = 1
+	self.laneCounter = 0
+	while self.laneCounter < numLanes do
+		self:update()
+	end
 end
 
 function TurtleStripMiningStrategy:update()
@@ -62,6 +66,7 @@ function TurtleStripMiningStrategy:createLane()
 	for i=1, self.laneLength do 
 		self:moveForward()
 	end
+	self.laneCounter = self.laneCounter + 1
 	if self.turnState == self.states.TURN_LEFT then 
 		self:changeState(self.states.TURN_LEFT)
 		self:changeTurnState(self.states.TURN_RIGHT)
