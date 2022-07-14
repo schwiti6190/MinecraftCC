@@ -119,7 +119,7 @@ local function setup()
 		local laneLength = tonumber(read())
 		print("Lane gap: ")
 		local laneGap = tonumber(read())
-		if laneLength ~= nil or laneGap ~= nil or numLanes ~= nil then 
+		if laneLength ~= nil and laneGap ~= nil and numLanes ~= nil then 
 			break
 		end
 		print("You failed!")
