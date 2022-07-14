@@ -131,16 +131,18 @@ function TurtleTaskModule:drop(dropFunc, itemsToIgnore, allowedItems, numLeftove
 	local numItems = self:getAllNumberOfItems()
 	for i=1,16 do 
 		local detail = turtle.getItemDetail(i)
-		if allowedItems == nil or allowedItems[detail.name] then 
-			if itemsToIgnore == nil or not itemsToIgnore[detail.name] then 
-				turtle.select(i)
-				if numLeftover then 
-					local diff = numItems[detail.name] - numLeftover
-					if diff > 0 then 
-						dropFunc(diff)
+		if detail then
+			if allowedItems == nil or allowedItems[detail.name] then 
+				if itemsToIgnore == nil or not itemsToIgnore[detail.name] then 
+					turtle.select(i)
+					if numLeftover then 
+						local diff = numItems[detail.name] - numLeftover
+						if diff > 0 then 
+							dropFunc(diff)
+						end
+					else
+						dropFunc()
 					end
-				else
-					dropFunc()
 				end
 			end
 		end
@@ -224,13 +226,11 @@ function TurtleTaskModule:getAllNumberOfItems()
 	return numItems
 end
 
-function TurtleTaskModule:inspect(inspectFunc, itemName, itemTag)
+function TurtleTaskModule:inspect(inspectFunc, itemName)
 	local hasBlock, itemDetails = inspectFunc()
 	if hasBlock then 
 		if itemName ~= nil and itemDetails.name then 
 			return itemDetails.name == itemName, itemDetails
-		elseif itemTag ~=nil and itemDetails and itemDetails.tags then 
-			return itemDetails.itemDetails.tags and itemDetails.tags[itemTag], itemDetails
 		end
 		return false, itemDetails
 	end
