@@ -114,11 +114,11 @@ local function setup()
 	local laneLength, laneGap, numLanes
 	while true do
 		print("Number of lanes: ")
-		local numLanes = tonumber(read())
+		numLanes = tonumber(read())
 		print("Lane length: ")	
-		local laneLength = tonumber(read())
+		laneLength = tonumber(read())
 		print("Lane gap: ")
-		local laneGap = tonumber(read())
+		laneGap = tonumber(read())
 		if laneLength ~= nil and laneGap ~= nil and numLanes ~= nil then 
 			break
 		end
